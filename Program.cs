@@ -1,35 +1,4 @@
-﻿/*namespace _00___TileCost_Calculator;
-
-class Program
-{
-    static void Main(string[] args)
-    {
-
-        double height;
-        double width;
-        double tileCost;
-        double totalCost;
-
-        Console.Write("Hi, this is a Tile Cost Calculator!\n\n" +
-                      "In order to calculate the costs for your flooring, please enter\n"+
-                      "1) the width and\n"+
-                      "2) the height \n"+
-                      "3) the cost per 1 unit for flooring"+
-                      "Thank you\n"+
-                      "--------------\n"+
-                      "1) Enter the height in cm\n");
-        height = Double.Parse(Console.ReadLine());
-        Console.WriteLine("2) Enter the width in cm");
-        width = Double.Parse(Console.ReadLine());
-        Console.WriteLine("3) Please enter the cost per unit for flooring");
-        tileCost = Double.Parse(Console.ReadLine());
-
-        totalCost = height * width * tileCost;
-        Console.WriteLine($"The total cost for flooring is {totalCost}.");
-    }
-}*/
-
-namespace _00___TileCost_Calculator;
+﻿namespace _00___TileCost_Calculator;
 
 class Program
 {
@@ -44,6 +13,8 @@ class Program
         double totalCost;
         string isRectangular;
         int numberOfRectangles = 0;
+        const double COST_PER_HOUR = 86.00;
+        const double AMOUNT_OF_SQUAREFEET = 20;
 
         Console.Write("Hi, this is a Tile Cost Calculator!\n\n" +
                       "In order to calculate the costs for flooring, please enter\n" +
@@ -73,19 +44,18 @@ class Program
 
         for (var counter = 0; counter < numberOfRectangles; counter++)
         {
-            Console.WriteLine("1) Enter the height in cm");
+            Console.WriteLine("1) Enter the height in feet");
             height = Double.Parse(Console.ReadLine());
-            Console.WriteLine("2) Enter the width in cm");
+            Console.WriteLine("2) Enter the width in feet");
             width = Double.Parse(Console.ReadLine());
             area = height * width;
             totalArea += area;
            
         }
         
-        Console.WriteLine("3) Please enter the cost per unit for flooring");
-        tileCost = Double.Parse(Console.ReadLine());
+        
 
-        totalCost = totalArea * tileCost;
-        Console.WriteLine($"The total cost for flooring is {totalCost}.");
+        totalCost = (totalArea/AMOUNT_OF_SQUAREFEET) * COST_PER_HOUR;
+        Console.WriteLine($"The total cost for flooring is {totalCost} $.");
     }
 }
