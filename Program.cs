@@ -10,8 +10,8 @@ class Program
         const string CIRCULAR_ROOM_TYPE = "A";
         const string RECTANGULAR_ROOM_TYPE = "B";  
         const string NON_CIRC_NON_RECT_ROOM_TYPE = "C";
-            
-
+        const string TRIANGULAR_ROOM_TYPE = "D";
+        
         Console.Write("Hi, this is a Tile Cost Calculator!\n\n" +
                       "In order to calculate the costs for flooring, please choose\n" +
                       "1) the shape of your room. Then enter\n" +
@@ -22,7 +22,7 @@ class Program
                       "The cost per hour is 86$ and our team is able to put in 20 square feet of flooring per hour\n " +
                       "--------------\n" +
                       "Please chose the shape of your room\n" +
-                      "A for Circular, B for Rectangular, C for non Rectangular and non Circular\n");
+                      "A for Circular, B for Rectangular, C for non Rectangular and non Circular, D for Triangular\n");
         string shape;
         
         shape = Console.ReadLine().ToUpper();
@@ -31,7 +31,7 @@ class Program
         //checking if the user has a non-rectangular room. If so, he has to type in the number of rectangles.
         //This number will be used to decide how often the for-loop will be run to collect the users measurements
 
-        if (shape != CIRCULAR_ROOM_TYPE && shape != RECTANGULAR_ROOM_TYPE && shape != NON_CIRC_NON_RECT_ROOM_TYPE)
+        if (shape != CIRCULAR_ROOM_TYPE && shape != RECTANGULAR_ROOM_TYPE && shape != NON_CIRC_NON_RECT_ROOM_TYPE && shape != TRIANGULAR_ROOM_TYPE)
         {
             Console.WriteLine("Invalid shape");
         }
@@ -68,17 +68,23 @@ class Program
             }
             
             double radius = 0;
-            double circleArea = 0;
 
             if (shape == CIRCULAR_ROOM_TYPE)
             {
                 Console.WriteLine("Enter the radius of your room: ");
                 radius = Double.Parse(Console.ReadLine());
-                circleArea = (radius * radius) * Double.Pi;
-                totalArea = circleArea;
+                totalArea = (radius * radius) * Double.Pi;
             }
 
-            double tileCost;
+            if (shape == TRIANGULAR_ROOM_TYPE)
+            {
+                Console.WriteLine("Enter the heigth");
+                height = Double.Parse(Console.ReadLine());
+                Console.WriteLine("Enter the basis of the triangle");
+                double basis = Double.Parse(Console.ReadLine());
+                totalArea = 0.5 * (height * basis);
+            }
+
             double totalCost;
 
             totalCost = (totalArea / AMOUNT_OF_SQUAREFEET) * COST_PER_HOUR;
