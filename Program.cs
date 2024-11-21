@@ -5,18 +5,12 @@ class Program
     static void Main(string[] args)
     {
 
-        double height = 0;
-        double width = 0;
-        double area = 0;
-        double totalArea = 0;
-        double circleArea = 0;
-        double tileCost;
-        double totalCost;
-        string shape;
-        double radius = 0;
-        int numberOfRectangles = 0;
         const double COST_PER_HOUR = 86.00;
         const double AMOUNT_OF_SQUAREFEET = 20;
+        const string CIRCULAR_ROOM_TYPE = "A";
+        const string RECTANGULAR_ROOM_TYPE = "B";  
+        const string NON_CIRC_NON_RECT_ROOM_TYPE = "C";
+            
 
         Console.Write("Hi, this is a Tile Cost Calculator!\n\n" +
                       "In order to calculate the costs for flooring, please choose\n" +
@@ -29,29 +23,38 @@ class Program
                       "--------------\n" +
                       "Please chose the shape of your room\n" +
                       "A for Circular, B for Rectangular, C for non Rectangular and non Circular\n");
+        string shape;
+        
         shape = Console.ReadLine().ToUpper();
 
 
         //checking if the user has a non-rectangular room. If so, he has to type in the number of rectangles.
         //This number will be used to decide how often the for-loop will be run to collect the users measurements
 
-        if (shape != "A" && shape != "B" && shape != "C")
+        if (shape != CIRCULAR_ROOM_TYPE && shape != RECTANGULAR_ROOM_TYPE && shape != NON_CIRC_NON_RECT_ROOM_TYPE)
         {
             Console.WriteLine("Invalid shape");
         }
         else
         {
 
-            if (shape == "C" || shape == "c")
+            int numberOfRectangles = 0;
+            
+            if (shape == NON_CIRC_NON_RECT_ROOM_TYPE)
             {
                 Console.WriteLine("In how many rectangle did you divide your room?\n");
                 numberOfRectangles = Int32.Parse(Console.ReadLine());
             }
 
-            if (shape == "B" || shape == "b")
+            if (shape == RECTANGULAR_ROOM_TYPE)
             {
                 numberOfRectangles = 1;
             }
+            
+            double height = 0;
+            double width = 0;
+            double area = 0;
+            double totalArea = 0;
 
             for (var counter = 0; counter < numberOfRectangles; counter++)
             {
@@ -63,8 +66,11 @@ class Program
                 totalArea += area;
 
             }
+            
+            double radius = 0;
+            double circleArea = 0;
 
-            if (shape == "A" || shape == "a")
+            if (shape == CIRCULAR_ROOM_TYPE)
             {
                 Console.WriteLine("Enter the radius of your room: ");
                 radius = Double.Parse(Console.ReadLine());
@@ -72,6 +78,8 @@ class Program
                 totalArea = circleArea;
             }
 
+            double tileCost;
+            double totalCost;
 
             totalCost = (totalArea / AMOUNT_OF_SQUAREFEET) * COST_PER_HOUR;
             double formattedCost = Math.Round(totalCost, 2);
