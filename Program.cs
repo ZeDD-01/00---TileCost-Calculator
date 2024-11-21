@@ -29,13 +29,13 @@ class Program
                       "--------------\n" +
                       "Please chose the shape of your room\n" +
                       "A for Circular, B for Rectangular, C for non Rectangular and non Circular\n");
-        shape = Console.ReadLine();
+        shape = Console.ReadLine().ToUpper();
 
 
         //checking if the user has a non-rectangular room. If so, he has to type in the number of rectangles.
         //This number will be used to decide how often the for-loop will be run to collect the users measurements
 
-        if (shape != "A" && shape != "a" && shape != "B" && shape != "b" && shape != "C" && shape != "c")
+        if (shape != "A" && shape != "B" && shape != "C")
         {
             Console.WriteLine("Invalid shape");
         }
