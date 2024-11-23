@@ -21,8 +21,8 @@ class Program
                       "and provide us with the sizes for all the rectangles\n\n" +
                       "The cost per hour is 86$ and our team is able to put in 20 square feet of flooring per hour\n " +
                       "--------------\n" +
-                      "Please chose the shape of your room\n" +
-                      "A for Circular, B for Rectangular, C for non Rectangular and non Circular, D for Triangular\n");
+                      "Please chose the shape of your room \n" + CIRCULAR_ROOM_TYPE +
+                      " for Circular, " + RECTANGULAR_ROOM_TYPE + " for Rectangular, " + NON_CIRC_NON_RECT_ROOM_TYPE + " for non Rectangular and non Circular, "+ TRIANGULAR_ROOM_TYPE + " for Triangular\n");
         string shape;
         
         shape = Console.ReadLine().ToUpper();
@@ -58,7 +58,7 @@ class Program
 
             for (var counter = 0; counter < numberOfRectangles; counter++)
             {
-                Console.WriteLine("1) Enter the height in feet");
+                Console.WriteLine("1) Enter the height for reactangle number " + (counter + 1) + " in feet");
                 height = Double.Parse(Console.ReadLine());
                 Console.WriteLine("2) Enter the width in feet");
                 width = Double.Parse(Console.ReadLine());
